@@ -1,6 +1,3 @@
-# utils.py
-# Fungsi pembantu Mini-AES
-
 def s_box(state):
     box = [0x9, 0x4, 0xA, 0xB, 0xD, 0x1, 0x8, 0x5, 0x6, 0x2, 0x0, 0x3, 0xC, 0xE, 0xF, 0x7]
     return [box[nibble] for nibble in state]
@@ -19,16 +16,16 @@ def mix_columns(state):
     return [
         state[0] ^ state[2],
         state[1] ^ state[3],
-        state[2] ^ state[0],
-        state[3] ^ state[1]
+        state[2],
+        state[3]
     ]
 
 def inverse_mix_columns(state):
     return [
-        state[2] ^ state[0],
-        state[3] ^ state[1],
         state[0] ^ state[2],
-        state[1] ^ state[3]
+        state[1] ^ state[3],
+        state[2],
+        state[3]
     ]
 
 def add_round_key(state, key):
