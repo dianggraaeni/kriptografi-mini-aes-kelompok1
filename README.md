@@ -16,14 +16,32 @@ Penjelasan Alur Flowchart Mini-AES
 1. 
 2. 
 
-## Implementasi Dasar Mini-AES
+## A. Spesifikasi Dasar
+### Implementasi Dasar Mini-AES
+#### Representasi Plaintext dan Key
+- **Plaintext** dan **Key** yang digunakan memiliki panjang **16 bit** atau **4 nibble**.
+- Keduanya harus diinput dalam format heksadesimal dan representasi disesuaikan dengan standar untuk algoritma Mini-AES.
 
-**1. SubNibbles**
+#### Operasi yang Harus Diimplementasikan
+- **SubNibbles**
+  - Setiap **4 bit** dari plaintext digantikan menggunakan **S-Box 4 bit** yang merupakan tabel substitusi yang digunakan untuk mengenkripsi data.
+  - Tujuan : menambah kebingungan dalam hubungan antara plaintext dan ciphertext.
 
-**2. ShiftRows**
+- **ShiftRows**
+  - Proses ini menggeser baris data dalam blok **2x2** untuk meningkatkan **diffusion**.
+  - Baris kedua dan ketiga dari blok akan digeser satu posisi ke kiri untuk menyebarkan perubahan bit pada data ke seluruh ciphertext.
 
-**3. MixColumns**
+- **MixColumns**
+  - Operasi ini menggunakan matriks sederhana pada **GF(2⁴)** atau field untuk bilangan biner **4 bit**. 
+  - Tujuan : mencampur data dalam kolom untuk meningkatkan efek **diffusion** dimana perubahan kecil pada plaintext akan mempengaruhi banyak bit ciphertext.
 
-**4. AddRoundKey**
+- **AddRoundKey**
+  - Pada setiap ronde **AddRoundKey** melakukan **XOR** antara state dan kunci ronde yang sesuai. 
+  - Tujuan : memastikan bahwa kunci berubah setiap ronde dan memberi lapisan keamanan tambahan untuk algoritma ini.
 
-*Jumlah Rounds*
+#### Jumlah Round
+- Mini-AES terdiri dari **3 ronde** dengan setiap ronde melibatkan proses SubNibbles, ShiftRows, MixColumns, dan AddRoundKey.
+- Setelah ronde ketiga, proses enkripsi selesai dan ciphertext dihasilkan.
+
+#### Bahasa Pemrograman
+- Program ini diimplementasikan menggunakan **Python** yang direkomendasikan karena sintaksisnya yang mudah dibaca dan kemampuan debugging yang kuat.
