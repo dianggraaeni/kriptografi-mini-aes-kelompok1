@@ -49,10 +49,10 @@ Modul ini berisi implementasi algoritma **Mini-AES** dengan berbagai operasi das
   - Ronde terakhir hanya melibatkan SubNibbles, ShiftRows, dan AddRoundKey.
 - **Output** : Ciphertext yang terenkripsi.
 
-#### Flowchart
+#### Flowchart Enkripsi
 ![enkripsi drawio](https://github.com/user-attachments/assets/c1153afb-00ca-4111-820a-11fb01c9a7e6)
 
-**Penjelasan alur flowchart**
+**Penjelasan alur flowchart Enkripsi**
 1. **Mulai**
   - Proses enkripsi dimulai dengan menerima plaintext dan key sebagai input.
 3. **Key Expansion**
@@ -75,6 +75,31 @@ Modul ini berisi implementasi algoritma **Mini-AES** dengan berbagai operasi das
 7. **Ciphertext**
   - Setelah ronde ketiga, hasil akhirnya adalah ciphertext, yaitu hasil enkripsi dari plaintext yang diinputkan.
   - Proses enkripsi selesai.
+
+#### Fungsi Key Expansion
+- **Inisialisasi Kunci** : Kunci 16-bit yang diberikan dipecah menjadi empat elemen awal (w[0], w[1], w[2], w[3]).
+- **Proses Ekspansi Kunci**
+   - Setiap elemen kunci yang ada diproses dengan **S-Box** (substitusi nibble) untuk mengubah nilai-nilai yang ada.
+   - Setelah substitusi, dilakukan operasi **XOR** antara elemen kunci yang sudah diproses dan elemen kunci sebelumnya, serta penambahan **Round Constant (RC)** untuk menghasilkan nilai kunci ronde berikutnya.
+   - Dengan cara ini, kunci ronde selanjutnya dibentuk secara berurutan.
+- **Pengulangan**: Proses ini diulang hingga mencapai jumlah kunci yang diperlukan untuk setiap ronde enkripsi (hingga i < 16).
+
+#### Flowchart Key Expansion
+![keyexpansions](https://github.com/user-attachments/assets/39552885-8436-4ee9-afbc-2be63869ebb6)
+
+**Penjelasan alur flowchart Key Expension**
+1. **Mulai**
+  - Proses **Key Expansion** dimulai dengan menerima key utama yang berukuran 16 bit (4 nibble).
+2. **Inisialisasi Key**
+  - Key utama dipecah menjadi empat elemen (w[0] hingga w[3]) yang digunakan untuk ronde pertama.
+3. **Proses Ekspansi Kunci**
+  - **S-Box** : Proses pertama dalam key expansion adalah menerapkan **S-Box** pada elemen kunci untuk mengubah nilai-nilai yang ada.
+  - **XOR dengan Kunci Sebelumnya** : Kemudian, elemen kunci diperluas dengan XOR antara elemen kunci yang sudah ada, yang menggabungkan hasil **S-Box** dengan konstanta ronde (RC, round constant).
+  - **Penambahan Kunci** : Dengan proses ini, kunci ronde berikutnya dihitung dan disalin ke variabel yang relevan.
+4. **Cek Jika i < 16**
+  - Setelah langkah ini, dicek apakah indeks kunci (i) sudah mencapai nilai 16. Jika belum, proses ekspansi kunci dilanjutkan untuk menghasilkan round key lebih banyak. Jika ya, maka proses key expansion selesai.
+5. **Selesai**
+  - Setelah proses **Key Expansion** selesai, round keys untuk setiap ronde telah siap digunakan untuk proses enkripsi.
 
 #### Fungsi Dekripsi (`decrypt`)
 - **Input** : Ciphertext 16 bit dan kunci 16 bit.
@@ -108,6 +133,10 @@ Modul ini berfungsi untuk menjalankan beberapa **test case** untuk memastikan fu
   - **Key** = [0xF, 0xF, 0xF, 0xF]
   - **Ciphertext yang diharapkan** = [0x5, 0x5, 0x7, 0x7]
 
+![Screenshot 2025-04-27 212329](https://github.com/user-attachments/assets/eb90a375-0ec7-485b-ad71-9b7704838f93)
+![Screenshot 2025-04-27 212348](https://github.com/user-attachments/assets/ed658df0-4dd8-4256-9fe3-73c746a529e8)
+![Screenshot 2025-04-27 212403](https://github.com/user-attachments/assets/973d152f-dbe3-4e27-a0a7-ba0e5593a381)
+
 #### Cara Menjalankan
 1. Buka terminal.
 2. **Jalankan `python test_cases.py`** untuk menguji efek perubahan bit pada plaintext dan kunci.
@@ -135,6 +164,8 @@ Modul ini digunakan untuk menguji **efek avalanche** yang mengukur bagaimana per
 
 #### Efek Avalanche pada Key
 - Begitu pula dengan perubahan kecil pada key, yang juga menghasilkan perubahan yang besar di ciphertext. Ini menunjukkan kuatnya sifat algoritma terhadap perubahan input yang kecil.
+
+![Screenshot 2025-04-27 213224](https://github.com/user-attachments/assets/c14e3944-93c1-48b4-aa12-689a8b9bea34)
 
 ### 4. Modul `utils.py`
 Modul ini berisi beberapa fungsi utilitas yang digunakan oleh algoritma Mini-AES, seperti:
@@ -169,6 +200,14 @@ Program ini diimplementasikan dalam bahasa Python dengan fitur
 6. Klik tombol "Encrypt" atau "Decrypt" untuk melakukan operasi.
 7. Lihat hasil dan log pada tab **Log**.
 8. Anda dapat **menyimpan/memuat data dan log ke file**.
+
+![Screenshot 2025-04-27 212545](https://github.com/user-attachments/assets/b34ce7ec-5f5d-420a-80ee-280685ddf959)
+![Screenshot 2025-04-27 212852](https://github.com/user-attachments/assets/0576a7db-09e4-48dd-8b37-296f74a211d0)
+![Screenshot 2025-04-27 212906](https://github.com/user-attachments/assets/c454dcdd-57e8-4722-9871-b7cb8931c0ba)
+![Screenshot 2025-04-27 212942](https://github.com/user-attachments/assets/4c6c121e-337a-403e-9074-0ef1e51ac5ea)
+![Screenshot 2025-04-27 213047](https://github.com/user-attachments/assets/66095fd9-376e-4de9-9dfe-b48a61ac843d)
+![Screenshot 2025-04-27 213108](https://github.com/user-attachments/assets/f4b5c1b8-ef09-4709-ad0d-c007747fd754)
+![Screenshot 2025-04-27 213132](https://github.com/user-attachments/assets/ce1323a4-0fdb-4181-8556-e665d99e3c7e)
 
 ## Kelebihan dan Keterbatasan Mini-AES
 ### Kelebihan Mini-AES
