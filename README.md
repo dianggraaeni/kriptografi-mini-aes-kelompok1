@@ -123,19 +123,20 @@ Modul ini berfungsi untuk menjalankan beberapa **test case** untuk memastikan fu
 - **Test 1** (Semua nilai 0)
   - **Plaintext** = [0x0, 0x0, 0x0, 0x0]
   - **Key** = [0x0, 0x0, 0x0, 0x0]
-  - **Ciphertext yang diharapkan** = [0xA, 0xA, 0x9, 0x9]
+  - **Ciphertext yang diharapkan** = [0xD, 0xE, 0x0, 0xE]
 - **Test 2** (Nilai plaintext dan key acak)
   - **Plaintext** = [0x1, 0x2, 0x3, 0x4]
   - **Key** = [0x5, 0x6, 0x7, 0x8]
-  - **Ciphertext yang diharapkan** = [0xB, 0x9, 0x6, 0x4]
+  - **Ciphertext yang diharapkan** = [0xE, 0x1, 0xE, 0xC]
 - **Test 3** (Nilai plaintext dan key maksimum)
   - **Plaintext** = [0xF, 0xF, 0xF, 0xF]
   - **Key** = [0xF, 0xF, 0xF, 0xF]
-  - **Ciphertext yang diharapkan** = [0x5, 0x5, 0x7, 0x7]
+  - **Ciphertext yang diharapkan** = [0x8, 0x8, 0x3, 0xC]
 
-![Screenshot 2025-04-27 212329](https://github.com/user-attachments/assets/eb90a375-0ec7-485b-ad71-9b7704838f93)
-![Screenshot 2025-04-27 212348](https://github.com/user-attachments/assets/ed658df0-4dd8-4256-9fe3-73c746a529e8)
-![Screenshot 2025-04-27 212403](https://github.com/user-attachments/assets/973d152f-dbe3-4e27-a0a7-ba0e5593a381)
+![image](https://github.com/user-attachments/assets/bb518543-dda0-4bac-a18b-08050ef7fa64)  
+![image](https://github.com/user-attachments/assets/e61420a8-ee86-48f7-8432-c46da2069dde)  
+![image](https://github.com/user-attachments/assets/07b67f2a-3de0-4714-b6cc-23f318d961d3)  
+![image](https://github.com/user-attachments/assets/b24eeac2-03a9-400d-b17a-b48905bce990)  
 
 #### Cara Menjalankan
 1. Buka terminal.
