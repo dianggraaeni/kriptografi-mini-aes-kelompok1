@@ -1,4 +1,4 @@
-# kriptografi-mini-aes-kelompok8
+# kriptografi-mini-aes-kelompok1
 
 Anggota Kelompok
 |  Nama  |  NRP  |
